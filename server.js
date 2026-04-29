@@ -11,49 +11,42 @@ app.get('/', function(req, res) {
 });
 
 app.post('/api/claude', async (req, res) => {
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.MISTRAL_API_KEY;
   if (!apiKey) {
-    return res.status(500).json({ error: { message: 'Clé API Gemini manquante côté serveur.' } });
+    return res.status(500).json({ error: { message: 'Clé API Mistral manquante côté serveur.' } });
   }
 
   try {
     const { system, messages, max_tokens } = req.body;
 
-    const contents = messages.map(function(m) {
-      return {
-        role: m.role === 'assistant' ? 'model' : 'user',
-        parts: [{ text: m.content }]
-      };
+    // Conversion format Anthropic → Mistral
+    const mistralMessages = [];
+    if (system) mistralMessages.push({ role: 'system', content: system });
+    messages.forEach(function(m) {
+      mistralMessages.push({ role: m.role === 'assistant' ? 'assistant' : 'user', content: m.content });
     });
-
-    if (contents.length === 0) {
-      contents.push({ role: 'user', parts: [{ text: 'Commence.' }] });
+    if (mistralMessages.filter(m => m.role !== 'system').length === 0) {
+      mistralMessages.push({ role: 'user', content: 'Commence.' });
     }
 
-    const geminiBody = {
-      system_instruction: system ? { parts: [{ text: system }] } : undefined,
-      contents: contents,
-      generationConfig: {
-        maxOutputTokens: max_tokens || 1000,
-        temperature: 0.85
-      }
-    };
-
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-    const response = await fetch(url, {
+    const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(geminiBody)
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + apiKey
+      },
+      body: JSON.stringify({
+        model: 'mistral-small-latest',
+        messages: mistralMessages,
+        max_tokens: max_tokens || 1000,
+        temperature: 0.85
+      })
     });
 
     const data = await response.json();
+    if (data.error) return res.json({ error: { message: data.error.message } });
 
-    if (data.error) {
-      return res.json({ error: { message: data.error.message } });
-    }
-
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Erreur. Réessayez.';
+    const text = data.choices?.[0]?.message?.content || 'Erreur. Réessayez.';
     res.json({ content: [{ type: 'text', text: text }] });
 
   } catch (e) {
