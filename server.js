@@ -6,7 +6,10 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Convertit le format Anthropic → Gemini et retourne une réponse au format Anthropic
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 app.post('/api/claude', async (req, res) => {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
@@ -16,8 +19,6 @@ app.post('/api/claude', async (req, res) => {
   try {
     const { system, messages, max_tokens } = req.body;
 
-    // Conversion messages Anthropic → Gemini
-    // Gemini exige une alternance user/model stricte, et commence toujours par user
     const contents = messages.map(function(m) {
       return {
         role: m.role === 'assistant' ? 'model' : 'user',
@@ -25,7 +26,6 @@ app.post('/api/claude', async (req, res) => {
       };
     });
 
-    // Si le tableau est vide, on ajoute un message de démarrage
     if (contents.length === 0) {
       contents.push({ role: 'user', parts: [{ text: 'Commence.' }] });
     }
@@ -53,7 +53,6 @@ app.post('/api/claude', async (req, res) => {
       return res.json({ error: { message: data.error.message } });
     }
 
-    // Convertit la réponse Gemini → format Anthropic attendu par le HTML
     const text = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Erreur. Réessayez.';
     res.json({ content: [{ type: 'text', text: text }] });
 
