@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DELF B1 – Coach Oral</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#121212;
+  --s1:#1a1a2e;--s2:#1e1e2f;--s3:#252540;
+  --vi:#9d4edf;--vi2:rgba(157,78,223,0.18);--vi3:rgba(157,78,223,0.35);--vi4:rgba(157,78,223,0.08);
+  --gr:#00c853;--gr2:rgba(0,200,83,0.12);--gr3:rgba(0,200,83,0.35);
+  --ro:#ff5252;--ro2:rgba(255,82,82,0.12);--ro3:rgba(255,82,82,0.3);
+  --ya:#ffd740;
+  --t1:#ffffff;--t2:#e0e0e0;--t3:#9e9e9e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--t2);
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;
+  background-image:
+    radial-gradient(ellipse at 0% 0%,rgba(157,78,223,0.13) 0%,transparent 55%),
+    radial-gradient(ellipse at 100% 100%,rgba(0,200,83,0.09) 0%,transparent 55%);
+}
+
+/* HEADER */
+header{
+  position:sticky;top:0;z-index:100;
+  width:100%;padding:12px 24px;
+  display:flex;align-items:center;gap:14px;
+  background:rgba(18,18,18,0.92);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--vi2);
+}
+.header-logo{font-family:'Poppins',sans-serif;font-size:1.05rem;font-weight:700;color:var(--vi);letter-spacing:.03em}
+.header-sub{font-size:.7rem;color:var(--t3);margin-top:1px}
+.header-home-btn{
+  margin-left:auto;
+  background:transparent;border:1px solid var(--vi3);
+  color:var(--vi);padding:6px 14px;border-radius:8px;
+  font-family:'Poppins',sans-serif;font-size:.73rem;font-weight:600;
+  cursor:pointer;letter-spacing:.03em;transition:all .2s;
+}
+.header-home-btn:hover{background:rgba(157,78,223,0.12);}
+.header-home-btn.hidden-btn{opacity:0;pointer-events:none}
+
+main{width:100%;max-width:840px;padding:22px 16px 60px;display:flex;flex-direction:column;gap:14px}
+.screen{display:none;flex-direction:column;gap:14px}
+.screen.active{display:flex}
+
+/* CARD */
+.card{
+  background:var(--s2);border:1px solid var(--vi2);border-radius:14px;padding:22px;
+  transition:border-color .25s,box-shadow .25s;
+}
+.card:hover{border-color:var(--vi3);box-shadow:0 4px 20px rgba(157,78,223,0.2)}
+.card-title{font-family:'Poppins',sans-serif;color:var(--vi);font-size:1rem;font-weight:700;margin-bottom:14px;letter-spacing:.02em}
+
+/* BADGES */
+.badge{
+  display:inline-block;font-family:'Poppins',sans-serif;
+  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  padding:3px 10px;border-radius:99px;
+  background:var(--vi4);border:1px solid var(--vi3);color:var(--vi);
+}
+.bdg-gr{background:rgba(0,200,83,0.1);border-color:rgba(0,200,83,0.35);color:var(--gr)}
+.bdg-ya{background:rgba(255,215,64,0.1);border-color:rgba(255,215,64,0.35);color:var(--ya)}
+
+/* GAMING BADGE */
+.gaming-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:linear-gradient(135deg,rgba(157,78,223,0.18),rgba(0,200,83,0.1));
+  border:1px solid var(--vi3);border-radius:99px;
+  padding:6px 16px;font-family:'Poppins',sans-serif;
+  font-size:.78rem;font-weight:700;color:var(--vi);
+  letter-spacing:.05em;text-transform:uppercase;
+  box-shadow:0 0 18px rgba(157,78,223,0.2);
+  margin-bottom:4px;
+}
+
+/* BUTTONS */
+.btn{
+  border:none;font-family:'Poppins',sans-serif;
+  font-weight:700;font-size:.83rem;letter-spacing:.5px;
+  text-transform:uppercase;padding:10px 22px;border-radius:9px;
+  cursor:pointer;transition:all .2s;
+}
+.btn-pr{background:var(--gr);color:#fff;}
+.btn-pr:hover{box-shadow:0 4px 18px rgba(0,200,83,0.35);transform:translateY(-1px)}
+.btn-pr:disabled{opacity:.38;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-se{background:transparent;color:var(--vi);border:1px solid var(--vi3);}
+.btn-se:hover{background:rgba(157,78,223,0.1)}
+.btn-sm{padding:6px 12px;font-size:.71rem}
+
+/* PARTIE GRID */
+.partie-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.partie-btn{
+  background:var(--s3);border:1.5px solid var(--vi2);border-radius:12px;
+  padding:18px 10px;cursor:pointer;text-align:center;color:var(--t2);
+  font-family:'Inter',sans-serif;transition:all .25s;
+}
+.partie-btn:hover,.partie-btn.selected{
+  border-color:var(--vi);background:rgba(157,78,223,0.1);
+  box-shadow:0 4px 20px rgba(157,78,223,0.25)
+}
+.partie-btn .num{font-family:'Poppins',sans-serif;font-size:1.8rem;font-weight:800;color:var(--vi);display:block;margin-bottom:6px}
+.partie-btn .label{font-size:.81rem;font-weight:500;line-height:1.3;color:var(--t1)}
+.partie-btn .dur{font-size:.67rem;color:var(--t3);margin-top:5px;display:block}
+
+/* SELECT */
+.field-label{font-family:'Poppins',sans-serif;font-size:.68rem;font-weight:600;color:var(--vi);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:7px}
+select{
+  background:var(--s3);border:1px solid var(--vi3);color:var(--t1);
+  padding:10px 13px;border-radius:9px;
+  font-family:'Inter',sans-serif;font-size:.88rem;cursor:pointer;width:100%;
+}
+select:focus{outline:none;border-color:var(--vi);box-shadow:0 0 0 3px rgba(157,78,223,0.15)}
+
+/* HIDDEN */
+.hidden{display:none!important}
+
+/* TIMER */
+.timer-block{
+  display:flex;align-items:center;gap:14px;
+  background:var(--s1);border:1px solid var(--vi2);border-radius:10px;padding:13px 16px;
+}
+.timer-display{font-family:'Poppins',sans-serif;font-size:2rem;font-weight:700;color:var(--vi);letter-spacing:.06em;min-width:78px}
+.timer-display.urgent{color:var(--ro)}
+.tlabel{font-size:.72rem;color:var(--t3);line-height:1.55;font-family:'Inter',sans-serif}
+
+/* DOC */
+.doc-block{
+  background:var(--s1);color:var(--t2);border-radius:12px;
+  padding:18px 20px;font-size:.86rem;line-height:1.8;
+  border-left:4px solid var(--vi);font-family:'Inter',sans-serif;
+}
+.doc-title{font-family:'Poppins',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:9px;color:var(--t1)}
+.doc-source{font-size:.69rem;color:var(--t3);margin-top:9px;font-style:italic}
+
+/* SITUATION */
+.sit-block{
+  background:rgba(157,78,223,0.07);border:1px solid var(--vi3);
+  border-radius:10px;padding:13px 15px;font-size:.84rem;line-height:1.65;
+}
+.sit-block strong{color:var(--vi)}
+
+/* STATUS BAR */
+.status-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:8px;padding-bottom:11px;
+  border-bottom:1px solid var(--vi2);margin-bottom:11px;
+}
+.repeat-btn{
+  background:transparent;border:1px solid var(--vi2);color:var(--vi);
+  padding:5px 11px;border-radius:7px;font-size:.71rem;cursor:pointer;
+  font-family:'Poppins',sans-serif;font-weight:600;transition:all .2s;
+}
+.repeat-btn:hover{background:var(--vi4);border-color:var(--vi3)}
+
+/* CHAT */
+.chat-area{
+  display:flex;flex-direction:column;gap:11px;
+  max-height:360px;overflow-y:auto;padding-right:4px;
+}
+.chat-area::-webkit-scrollbar{width:4px}
+.chat-area::-webkit-scrollbar-thumb{background:var(--s3);border-radius:4px}
+.msg{display:flex;gap:9px;align-items:flex-start;animation:fadeUp .3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.msg.examiner{justify-content:flex-start}
+.msg.student{justify-content:flex-end}
+.avatar{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.avatar.ex{background:rgba(157,78,223,0.2);border:1px solid var(--vi3)}
+.avatar.st{background:rgba(0,200,83,0.15);border:1px solid rgba(0,200,83,0.35)}
+.bubble{max-width:78%;padding:10px 14px;border-radius:12px;font-size:.84rem;line-height:1.6;font-family:'Inter',sans-serif}
+.examiner .bubble{background:var(--s3);border:1px solid var(--vi2);border-top-left-radius:3px}
+.student .bubble{background:rgba(0,200,83,0.1);border:1px solid rgba(0,200,83,0.25);border-top-right-radius:3px}
+.typing span{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--vi);margin:0 2px;animation:bounce 1.2s infinite}
+.typing span:nth-child(2){animation-delay:.2s}
+.typing span:nth-child(3){animation-delay:.4s}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+
+/* VOICE */
+.voice-row{display:flex;align-items:center;gap:12px}
+.voice-status{flex:1;font-size:.8rem;color:var(--t3);line-height:1.5;font-family:'Inter',sans-serif}
+.voice-status.vact{color:var(--ro)}
+.voice-status.vok{color:var(--gr);font-style:italic}
+.btn-mic{
+  width:56px;height:56px;border-radius:50%;
+  background:var(--vi);color:#fff;font-size:1.3rem;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;border:none;transition:all .2s;flex-shrink:0;
+  box-shadow:0 2px 12px rgba(157,78,223,0.3);
+}
+.btn-mic.rec{background:var(--ro);animation:pulse 1.2s infinite}
+.btn-mic:disabled{opacity:.3;cursor:not-allowed;animation:none;box-shadow:none}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,82,82,0.4)}50%{box-shadow:0 0 0 12px rgba(255,82,82,0)}}
+
+/* MONO TRANSCRIPT */
+.mono-transcript{
+  background:var(--s1);border:1px solid var(--vi2);border-radius:8px;
+  padding:11px;font-size:.8rem;line-height:1.6;color:var(--t3);
+  font-style:italic;min-height:50px;max-height:100px;overflow-y:auto;margin-top:9px;
+}
+.mono-transcript.filled{color:var(--t2);font-style:normal}
+.shint{font-size:.75rem;color:var(--t3);margin-top:8px;font-family:'Inter',sans-serif}
+
+/* SCORES */
+.scores-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.score-item{
+  background:var(--s3);border:1px solid var(--vi2);border-radius:10px;padding:14px;
+}
+.slabel{font-size:.73rem;color:var(--t3);margin-bottom:7px;font-family:'Inter',sans-serif}
+.snums{display:flex;align-items:baseline;gap:4px;margin-bottom:7px}
+.sval{font-family:'Poppins',sans-serif;font-size:1.9rem;font-weight:700;color:var(--vi)}
+.smax{font-size:.73rem;color:var(--t3)}
+.sbar-bg{height:5px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
+.sbar-fill{height:100%;background:linear-gradient(90deg,var(--vi),var(--gr));border-radius:3px;width:0;transition:width .9s ease}
+.score-total{grid-column:1/-1;text-align:center;padding:16px;background:rgba(157,78,223,0.07);border-color:var(--vi3)}
+.score-total .sval{font-size:2.5rem;color:var(--t1)}
+.mention{
+  display:inline-block;margin-top:7px;padding:4px 14px;border-radius:99px;
+  font-family:'Poppins',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+}
+.m-tb{background:var(--gr2);border:1px solid var(--gr3);color:var(--gr)}
+.m-b{background:rgba(41,128,185,0.15);border:1px solid rgba(41,128,185,0.4);color:#5dade2}
+.m-ab{background:rgba(255,215,64,0.12);border:1px solid rgba(255,215,64,0.35);color:var(--ya)}
+.m-p{background:rgba(158,158,158,0.12);border:1px solid rgba(158,158,158,0.3);color:var(--t3)}
+.m-i{background:var(--ro2);border:1px solid var(--ro3);color:var(--ro)}
+
+.feedback-text{font-size:.85rem;line-height:1.85;color:var(--t2);white-space:pre-wrap;font-family:'Inter',sans-serif}
+
+/* MODE ENSEIGNANT */
+.teacher-block{
+  background:rgba(255,215,64,0.06);border:1px solid rgba(255,215,64,0.25);
+  border-radius:12px;padding:16px;margin-top:12px;
+}
+.teacher-title{font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:700;color:var(--ya);margin-bottom:10px}
+.teacher-content{font-size:.83rem;line-height:1.8;color:var(--t2);white-space:pre-wrap;font-family:'Inter',sans-serif}
+
+/* TOGGLE */
+.toggle-row{display:flex;align-items:center;gap:10px;margin-top:10px}
+.toggle-label{font-size:.78rem;color:var(--t3);font-family:'Inter',sans-serif}
+.toggle{position:relative;display:inline-block;width:40px;height:22px}
+.toggle input{opacity:0;width:0;height:0}
+.slider{
+  position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;
+  background:var(--s3);border:1px solid var(--vi2);border-radius:22px;transition:.3s;
+}
+.slider:before{
+  position:absolute;content:"";height:16px;width:16px;left:3px;bottom:2px;
+  background:var(--t3);border-radius:50%;transition:.3s;
+}
+input:checked+.slider{background:rgba(157,78,223,0.3);border-color:var(--vi)}
+input:checked+.slider:before{transform:translateX(18px);background:var(--vi)}
+
+/* EXERCISES */
+.exo-block{
+  background:var(--s3);border:1px solid var(--vi2);border-radius:12px;padding:17px;margin-bottom:10px;
+}
+.exo-title{font-family:'Poppins',sans-serif;color:var(--vi);font-weight:700;font-size:.86rem;margin-bottom:9px}
+.exo-content{font-size:.83rem;line-height:1.75;color:var(--t2);white-space:pre-wrap;font-family:'Inter',sans-serif}
+.corr-content{
+  display:none;margin-top:10px;padding:10px;
+  background:var(--gr2);border:1px solid var(--gr3);
+  border-radius:8px;font-size:.82rem;color:var(--t2);white-space:pre-wrap;
+}
+.corr-content.open{display:block}
+
+.row-end{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+
+@media(max-width:560px){
+  .partie-grid{grid-template-columns:1fr}
+  .scores-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="header-logo">&#127911; DELF B1 Junior &mdash; Coach Oral</div>
+    <div class="header-sub">Simulation &middot; Evaluation &middot; Remediation</div>
+  </div>
+  <button class="header-home-btn hidden-btn" id="btn-header-home">&#8592; Accueil</button>
+</header>
+
+<main>
+
+<!-- S1: ACCUEIL -->
+<div id="s-setup" class="screen active">
+  <div class="card" style="text-align:center;padding:28px 22px;">
+    <div class="gaming-badge">&#127918; Gaming Edition</div>
+    <h2 style="font-family:'Poppins',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;margin:10px 0 6px;">Coach Oral DELF B1</h2>
+    <p style="font-size:.84rem;color:var(--t3);max-width:420px;margin:0 auto;">Entra&icirc;nez-vous &agrave; l&rsquo;oral DELF B1 Junior avec un examinateur IA.</p>
+    <div class="toggle-row" style="justify-content:center;margin-top:14px;">
+      <label class="toggle"><input type="checkbox" id="teacher-mode-toggle"><span class="slider"></span></label>
+      <span class="toggle-label">&#127979; Mode Enseignant</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">1 &mdash; Choisissez votre mode</div>
+    <div class="partie-grid" style="grid-template-columns:1fr 1fr;">
+      <button class="partie-btn" id="mode-btn-full" >
+        <span class="num" style="font-size:1.4rem;">&#127941;</span>
+        <span class="label">Examen complet</span>
+        <span class="dur">Les 3 parties &middot; Bilan global</span>
+      </button>
+      <button class="partie-btn" id="mode-btn-single" >
+        <span class="num" style="font-size:1.4rem;">&#127919;</span>
+        <span class="label">Entra&icirc;nement libre</span>
+        <span class="dur">Une partie au choix</span>
+      </button>
+    </div>
+  </div>
+
+  <div id="single-mode-card" class="card hidden">
+    <div class="card-title">2 &mdash; Choisissez l&rsquo;exercice</div>
+    <div class="partie-grid">
+      <button class="partie-btn" id="pb-entretien">
+        <span class="num">1</span>
+        <span class="label">Entretien dirig&eacute;</span>
+        <span class="dur">~3 min &middot; Sans pr&eacute;paration</span>
+      </button>
+      <button class="partie-btn" id="pb-interaction">
+        <span class="num">2</span>
+        <span class="label">Exercice en interaction</span>
+        <span class="dur">~3 min &middot; Jeu de r&ocirc;le</span>
+      </button>
+      <button class="partie-btn" id="pb-monologue">
+        <span class="num">3</span>
+        <span class="label">Point de vue sur document</span>
+        <span class="dur">10 min pr&eacute;p. + 4 min expos&eacute;</span>
+      </button>
+    </div>
+    <div id="subject-wrap" class="hidden" style="margin-top:14px;">
+      <label class="field-label" for="subject-select">3 &mdash; Choisissez un sujet</label>
+      <select id="subject-select">
+        <option value="">— S&eacute;lectionner un sujet —</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row-end">
+    <button class="btn btn-pr" id="btn-launch" disabled>Commencer &#9654;</button>
+  </div>
+</div>
+
+<!-- S2: PREP -->
+<div id="s-prep" class="screen">
+  <div class="card">
+    <div style="display:flex;gap:8px;margin-bottom:13px;flex-wrap:wrap;">
+      <span class="badge">B1</span>
+      <span class="badge">Partie 3</span>
+      <span class="badge bdg-ya">Pr&eacute;paration</span>
+    </div>
+    <div class="timer-block" style="margin-bottom:15px;">
+      <div>
+        <div id="prep-timer" class="timer-display">10:00</div>
+        <div class="tlabel">&#9203; Temps de pr&eacute;paration</div>
+      </div>
+      <div class="tlabel" style="flex:1;">
+        Lisez le document. Pr&eacute;parez votre expos&eacute; :<br>
+        <strong style="color:var(--vi);">pr&eacute;sentation &middot; 5 id&eacute;es + connecteurs + exemples &middot; conclusion + avis personnel</strong><br>
+        Important : dites <em>vous</em> &agrave; l&rsquo;examinateur, jamais <em>tu</em>.
+      </div>
+    </div>
+    <div id="prep-doc" class="doc-block"></div>
+  </div>
+  <div class="row-end">
+    <button class="btn btn-se" id="btn-prep-back">&#8592; Retour</button>
+    <button class="btn btn-pr" id="btn-start-exam">&#9654; Commencer l&rsquo;expos&eacute;</button>
+  </div>
+</div>
+
+<!-- S3: EXAM -->
+<div id="s-exam" class="screen">
+  <div class="card">
+    <div class="status-bar">
+      <div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap;">
+        <span class="badge">B1</span>
+        <span id="exam-badge" class="badge"></span>
+        <span id="exam-subject-label" style="font-size:.74rem;color:var(--t3);"></span>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <span id="speak-timer-block" class="hidden">
+          <span id="speak-timer" class="timer-display" style="font-size:1rem;min-width:58px;">4:00</span>
+        </span>
+        <button class="repeat-btn" id="btn-repeat">&#128266; R&eacute;p&eacute;ter</button>
+      </div>
+    </div>
+    <div id="exam-situation" class="sit-block hidden" style="margin-bottom:13px;"></div>
+    <div id="mono-info" class="hidden" style="margin-bottom:11px;">
+      <div class="sit-block">
+        <strong>Phase expos&eacute; (4 min)</strong> &mdash; Appuyez sur le micro, parlez librement par segments. Cliquez <em>J&rsquo;ai termin&eacute;</em> &agrave; la fin.
+      </div>
+      <div id="mono-live" class="mono-transcript">Votre transcription appara&icirc;tra ici&hellip;</div>
+    </div>
+    <div id="chat-area" class="chat-area"></div>
+    <div id="shint" class="shint">L&rsquo;examinateur va commencer&hellip;</div>
+  </div>
+  <div class="card">
+    <div class="voice-row">
+      <button id="btn-mic" class="btn-mic" disabled>&#127899;&#65039;</button>
+      <div id="voice-status" class="voice-status">Attendez que l&rsquo;examinateur parle&hellip;</div>
+      <button id="btn-done-mono" class="btn btn-se btn-sm hidden">&#10003; J&rsquo;ai termin&eacute;</button>
+    </div>
+    <div style="font-size:.69rem;color:var(--t3);margin-top:9px;">
+      &#9888;&#65039; Chrome ou Edge requis pour la reconnaissance vocale &middot; Autorisez le microphone
+    </div>
+  </div>
+  <div class="row-end">
+    <button class="btn btn-se" id="btn-stop-exam">&#9654; Terminer &amp; voir le feedback</button>
+  </div>
+</div>
+
+<!-- S4: EVAL -->
+<div id="s-eval" class="screen">
+  <div class="card">
+    <div class="card-title">&#127942; &Eacute;valuation DELF B1</div>
+    <div id="scores-grid" class="scores-grid">
+      <div style="color:var(--t3);font-size:.85rem;grid-column:1/-1;">Analyse de la prestation en cours&hellip;</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Feedback d&eacute;taill&eacute;</div>
+    <div id="feedback-text" class="feedback-text"></div>
+  </div>
+  <div id="teacher-report-block" class="teacher-block hidden">
+    <div class="teacher-title">&#127979; Rapport enseignant</div>
+    <div id="teacher-report-content" class="teacher-content"></div>
+  </div>
+  <div class="row-end">
+    <button class="btn btn-se" id="btn-new-from-eval">&#8617; Nouvel exercice</button>
+    <button class="btn btn-se hidden" id="btn-next-partie">Partie suivante &#9654;</button>
+    <button class="btn btn-pr" id="btn-go-exo">&#9999;&#65039; Exercices cibl&eacute;s</button>
+  </div>
+</div>
+
+<!-- S5: EXERCICES -->
+<div id="s-exo" class="screen">
+  <div class="card">
+    <div class="card-title" id="exo-title">&#9999;&#65039; Exercices de rem&eacute;diation</div>
+    <div id="exo-loading" style="color:var(--t3);font-size:.84rem;">G&eacute;n&eacute;ration en cours&hellip;</div>
+    <div id="exo-content"></div>
+  </div>
+  <div class="row-end">
+    <button class="btn btn-se" id="btn-exo-back">&#8592; Retour &eacute;valuation</button>
+    <button class="btn btn-pr" id="btn-new-from-exo">&#8617; Nouvel exercice</button>
+  </div>
+</div>
+
+<!-- S6: BILAN FINAL -->
+<div id="s-bilan" class="screen">
+  <div class="card">
+    <div class="card-title">&#127942; Bilan de l&rsquo;examen complet</div>
+    <div id="bilan-content"></div>
+  </div>
+  <div class="row-end">
+    <button class="btn btn-pr" id="btn-bilan-new">&#8617; Nouvel examen</button>
+  </div>
+</div>
+
+</main>
+
+<script>
+// ── DATA ────────────────────────────────────────────
+var MONOLOGUES=[
+{id:1,titre:"Les jeunes et la lecture",source:"Le Monde des Ados, février 2024",texte:"Aujourd'hui, on dit souvent que les jeunes ne lisent plus. Avec les écrans, les réseaux sociaux et les jeux vidéo, la lecture semble moins attirer les adolescents. Pourtant, lire reste une activité essentielle pour le développement personnel et la réussite scolaire. Un récent sondage révèle que 60 % des collégiens français déclarent ne lire aucun livre en dehors des obligations scolaires. Face à ce constat, certains enseignants cherchent de nouvelles façons de donner le goût de lire : clubs de lecture, romans graphiques, livres audio. Mais pour d'autres, le problème est plus profond : dans une société où tout va vite et où l'attention est constamment sollicitée, le livre demande un effort que beaucoup de jeunes ne sont plus prêts à faire. Faut-il s'inquiéter ? Ou simplement accepter que les pratiques culturelles évoluent ?"},
+{id:2,titre:"Les écrans avant de dormir",source:"Phosphore, janvier 2024",texte:"De plus en plus d'enfants et d'adolescents utilisent leur téléphone, leur tablette ou regardent la télévision juste avant de s'endormir. Si certains y voient un moment de détente après une longue journée, les spécialistes tirent la sonnette d'alarme. Selon une étude récente, les adolescents qui utilisent un écran dans l'heure précédant le coucher dorment en moyenne 45 minutes de moins que les autres. Résultat : fatigue, difficultés de concentration, mauvais résultats scolaires. Certains parents décident alors d'interdire les écrans dans les chambres le soir, ce qui provoque souvent des conflits familiaux. D'autres préfèrent faire confiance à leurs enfants et les responsabiliser. Mais à l'heure où les plateformes de streaming proposent des contenus sans fin, apprendre à décrocher devient un vrai défi pour toute la famille."},
+{id:3,titre:"Les notes à l'école",source:"L'Étudiant, mars 2024",texte:"En France, les notes font partie de la vie scolaire depuis toujours. Avoir 20/20 est un idéal, avoir moins de 10 est une honte. Mais certains établissements expérimentent aujourd'hui un système sans notes, remplacées par des évaluations par compétences ou des appréciations qualitatives. Partisans et opposants s'affrontent : pour les uns, les notes démotivent les élèves en difficulté et créent un stress inutile dès le plus jeune âge. Pour les autres, elles sont indispensables pour préparer les concours, les examens et plus généralement la vie professionnelle. Les parents eux-mêmes sont divisés. Et les élèves ? Beaucoup avouent ne pas savoir ce qu'ils préfèrent vraiment."},
+{id:4,titre:"Le futur sans Internet",source:"Courrier International, avril 2024",texte:"Internet fait aujourd'hui partie intégrante de notre quotidien. Nous l'utilisons pour communiquer avec nos proches, travailler, faire des achats, apprendre et nous divertir. Il est difficile d'imaginer une journée sans connexion. Pourtant, certains experts et philosophes imaginent un monde où Internet n'existerait plus ou serait fortement limité. Ils pointent les risques réels : dépendance au numérique, diffusion massive de fausses informations, atteintes à la vie privée, cyberharcèlement. Des études montrent que les jeunes passent en moyenne sept heures par jour devant un écran. Est-ce vraiment un progrès ? Pour certains, se déconnecter serait une libération. Pour d'autres, ce serait un retour en arrière impossible à envisager."},
+{id:5,titre:"L'égalité dans le sport",source:"Sport et Société, mars 2024",texte:"Dans le monde du sport professionnel, les inégalités entre hommes et femmes restent très importantes. Les sportives sont moins médiatisées, moins sponsorisées et gagnent en moyenne beaucoup moins que leurs homologues masculins. Pourtant, les résultats sont là : lors des derniers Jeux olympiques, les femmes ont obtenu autant de médailles que les hommes dans de nombreux pays. Certains avancent des arguments liés à l'audience et aux recettes commerciales. D'autres dénoncent des préjugés culturels profondément ancrés dans nos sociétés. Des mouvements citoyens réclament la parité dans les médias sportifs et des salaires équivalents. Mais le changement est lent."},
+{id:6,titre:"Livres papier ou livres numériques",source:"Okapi, février 2024",texte:"Depuis quelques années, les livres numériques se multiplient dans les écoles, les bibliothèques et les foyers. Légers, peu coûteux et accessibles en quelques secondes, ils semblent avoir tout pour plaire. Certains établissements scolaires ont même remplacé les manuels papier par des tablettes. Mais cette révolution numérique ne fait pas l'unanimité. De nombreux élèves et enseignants restent attachés au livre papier : ils le trouvent plus agréable à lire, moins fatigant pour les yeux, et affirment mieux mémoriser ce qu'ils lisent sur papier. D'autres voient dans le livre numérique une occasion de moderniser l'école et de réduire le poids des cartables."},
+{id:7,titre:"Faire l'école sur un bateau",source:"Géo Ado, janvier 2024",texte:"De plus en plus de familles choisissent de tout quitter pour partir vivre sur un bateau pendant un an, deux ans, parfois plus. Les parents organisent eux-mêmes l'éducation de leurs enfants, au gré des escales et des découvertes. Ces familles témoignent d'une expérience extraordinaire : apprendre les mathématiques en naviguant, découvrir l'histoire en visitant des pays lointains, parler plusieurs langues. Mais cette forme d'éducation soulève aussi des questions sérieuses. Les enfants sont-ils bien préparés pour réintégrer le système scolaire traditionnel ? Souffrent-ils de l'absence d'amis du même âge ? Et les parents ont-ils vraiment les compétences pour enseigner toutes les matières ?"},
+{id:8,titre:"La mode chez les adolescents",source:"Phosphore, mars 2024",texte:"S'habiller à la mode est pour beaucoup d'adolescents bien plus qu'une question d'esthétique : c'est une façon d'exister dans le groupe, d'affirmer qui l'on est et d'être accepté par les autres. Avoir les bonnes baskets, le bon sweat, la bonne marque peut faire toute la différence dans une cour de lycée. Mais cette pression sociale a un coût. Les familles aux revenus modestes peinent parfois à suivre des tendances qui changent chaque saison, et certains jeunes sont victimes de moqueries ou d'exclusion à cause de leurs vêtements. Des voix s'élèvent pour défendre l'uniforme scolaire comme solution égalitaire."},
+{id:9,titre:"L'alimentation des jeunes",source:"Santé Magazine Jeunes, février 2024",texte:"Aujourd'hui, les habitudes alimentaires des adolescents inquiètent de nombreux spécialistes. Entre fast-food, plats industriels et grignotage devant les écrans, les jeunes mangent de plus en plus mal. Selon une étude récente, un adolescent français sur trois ne prend pas de petit-déjeuner le matin et consomme trop de sucre et de graisses saturées. Pourtant, une bonne alimentation est essentielle à cette période de croissance intense. Des initiatives voient le jour : ateliers cuisine dans les collèges, menus végétariens à la cantine. Mais changer les habitudes alimentaires n'est pas simple quand la publicité pour les produits sucrés est omniprésente."},
+{id:10,titre:"L'écologie au quotidien",source:"Terra Éco, mars 2024",texte:"Le changement climatique est l'un des sujets les plus débattus de notre époque. Les jeunes sont souvent présentés comme la génération la plus concernée : ils manifestent dans les rues, rejoignent des associations écologistes, changent leurs habitudes de consommation. Pourtant, entre les discours et les actes, le fossé reste important. Prendre l'avion pour les vacances, acheter des vêtements de fast fashion : autant de gestes du quotidien qui pèsent sur l'environnement. Certains estiment que la responsabilité appartient aux individus, d'autres pensent que seuls les gouvernements et les grandes entreprises peuvent vraiment changer les choses."},
+{id:11,titre:"Les métiers du futur",source:"L'Étudiant, avril 2024",texte:"Le monde du travail change à une vitesse impressionnante. L'intelligence artificielle, la robotisation et la numérisation transforment des secteurs entiers de l'économie. Certains métiers qui existaient il y a dix ans ont déjà disparu, et de nouveaux apparaissent chaque année. Les jeunes devront probablement changer de métier plusieurs fois au cours de leur carrière. Face à cette incertitude, comment choisir ses études ? Faut-il privilégier les filières technologiques et scientifiques, ou les formations artistiques et humaines résisteront-elles mieux à l'automatisation ? Ce qui est certain, c'est que la capacité d'adaptation, la créativité et les compétences relationnelles seront de plus en plus précieuses."},
+{id:12,titre:"La musique dans la vie des jeunes",source:"Télérama Jeunes, janvier 2024",texte:"La musique occupe une place immense dans la vie des adolescents. Qu'ils écoutent du rap, de la pop, du rock ou de la musique classique, les jeunes passent en moyenne deux heures par jour à écouter de la musique, souvent avec des écouteurs. Pour beaucoup, c'est un refuge émotionnel, une façon de gérer le stress ou la tristesse. Mais la musique, c'est aussi une pratique : des millions de jeunes apprennent un instrument, participent à des chœurs ou produisent leurs propres sons sur des applications numériques. Pourtant, dans de nombreux établissements scolaires, les cours de musique sont réduits à la portion congrue, voire supprimés faute de moyens."},
+{id:13,titre:"Les échanges scolaires à l'étranger",source:"Le Monde Campus, mars 2024",texte:"Partir étudier quelques semaines ou quelques mois dans un pays étranger est une expérience que beaucoup de jeunes rêvent de vivre. Les échanges scolaires permettent d'apprendre une langue en situation réelle, de découvrir une autre culture et de gagner en autonomie. Des études montrent que les jeunes ayant participé à un échange international obtiennent de meilleurs résultats en langues et s'adaptent plus facilement à de nouveaux environnements. Pourtant, ces programmes restent inaccessibles pour de nombreuses familles : le coût représente souvent plusieurs milliers d'euros. Des aides existent, comme Erasmus+, mais elles restent méconnues."},
+{id:14,titre:"Les fausses informations sur Internet",source:"Le Monde, février 2024",texte:"Avec l'explosion des réseaux sociaux et des sites d'information en ligne, il est devenu de plus en plus difficile de distinguer le vrai du faux. Les fake news se propagent à une vitesse impressionnante : une fausse information se diffuse six fois plus vite qu'une vraie sur les réseaux sociaux. Les adolescents, grands consommateurs de contenus numériques, sont particulièrement exposés. Certains partagent des informations sans les vérifier, contribuant ainsi à leur diffusion. Face à ce phénomène, des initiatives d'éducation aux médias se développent dans les collèges et lycées pour apprendre aux jeunes à identifier des sources fiables."},
+{id:15,titre:"Les cadeaux qu'on n'aime pas",source:"Psychologies Magazine, décembre 2023",texte:"Recevoir un cadeau est censé être un moment de joie. Mais que faire quand le cadeau ne correspond pas du tout à ce qu'on espérait ? Pour certains, faire semblant d'être content est une question de politesse et de respect envers la personne qui offre. Pour d'autres, c'est une forme de mensonge qui empêche une vraie communication dans la famille ou entre amis. La question se pose aussi différemment selon les cultures : dans certains pays, exprimer sa déception est perçu comme impoli, tandis que dans d'autres, l'honnêteté est valorisée. Un cadeau raté dit-il quelque chose sur la qualité d'une relation ?"}
+];
+
+var INTERACTIONS=[
+{id:1,titre:"Pique-nique ou restaurant",personnage:"un(e) ami(e)",registre:"tu",situation:"Vous voulez organiser un pique-nique ce week-end avec votre ami(e), mais il/elle préfère aller au restaurant car il fait mauvais temps. Vous essayez de le/la convaincre ou cherchez un compromis."},
+{id:2,titre:"Match de rugby ou foot",personnage:"un(e) ami(e)",registre:"tu",situation:"Vous voulez aller voir un match de rugby samedi prochain et vous proposez à votre ami(e) de vous accompagner. Mais il/elle préfère regarder le football. Vous essayez de le/la convaincre ou proposez une autre solution."},
+{id:3,titre:"Vacances chez la famille d'accueil",personnage:"la mère de la famille d'accueil",registre:"vous",situation:"Vous séjournez chez une famille d'accueil en France pour apprendre le français. La mère de famille vous demande ce que vous aimeriez faire pendant les prochaines vacances. Vous exprimez vos préférences et discutez des activités possibles."},
+{id:4,titre:"Absence en cours",personnage:"votre professeur(e)",registre:"vous",situation:"Vous avez manqué un cours important à cause d'un problème de santé. Vous allez voir votre professeur pour expliquer la situation, vous excuser et lui demander si vous pouvez faire votre exposé à une date ultérieure."},
+{id:5,titre:"Répéter de la musique à l'école",personnage:"le directeur de l'école",registre:"vous",situation:"Vous souhaitez utiliser une salle de l'école le mercredi après-midi pour répéter avec votre groupe de musique. Vous demandez l'autorisation au directeur, présentez votre projet et essayez de le convaincre que vous respecterez le règlement."},
+{id:6,titre:"Collègue en retard en colonie",personnage:"votre collègue moniteur(trice)",registre:"tu",situation:"Vous êtes moniteur/monitrice en colonie de vacances. Votre collègue arrive souvent en retard le matin, ce qui crée des problèmes pour les activités. Vous lui en parlez calmement et cherchez ensemble une solution."},
+{id:7,titre:"Livre abîmé à la bibliothèque",personnage:"le/la bibliothécaire",registre:"vous",situation:"Vous avez abîmé accidentellement un livre emprunté à la bibliothèque. Vous allez voir le/la bibliothécaire pour expliquer ce qui s'est passé, vous excuser et proposer une solution pour réparer le problème."},
+{id:8,titre:"Proposer une activité en colonie",personnage:"la monitrice principale",registre:"vous",situation:"Vous êtes en colonie de vacances et vous souhaitez proposer une nouvelle activité créative pour les enfants. Vous en parlez avec la monitrice principale, expliquez votre idée en détail et essayez de la convaincre de l'accepter."},
+{id:9,titre:"Chez le médecin",personnage:"le médecin",registre:"vous",situation:"Vous ne vous sentez pas bien depuis plusieurs jours : vous avez mal à la gorge, de la fièvre et vous êtes très fatigué(e). Vous consultez un médecin, décrivez vos symptômes, répondez à ses questions et demandez des conseils pour guérir rapidement."},
+{id:10,titre:"Retour d'un article en magasin",personnage:"le/la vendeur(se)",registre:"vous",situation:"Vous avez acheté une paire de chaussures il y a trois jours mais elles sont défectueuses (la semelle se décolle). Vous retournez au magasin pour expliquer le problème au vendeur et demander un échange ou un remboursement."},
+{id:11,titre:"À la gare",personnage:"l'agent SNCF",registre:"vous",situation:"Vous avez raté votre correspondance à cause d'un retard de train. Vous devez absolument arriver à destination ce soir. Vous allez au guichet pour expliquer votre situation, demander des informations sur les prochains trains et trouver une solution."},
+{id:12,titre:"Au restaurant",personnage:"le/la serveur(se)",registre:"vous",situation:"Vous êtes au restaurant avec un ami. Votre plat n'est pas ce que vous avez commandé et, en vérifiant l'addition, vous remarquez une erreur. Vous appelez le serveur pour expliquer calmement les deux problèmes et trouver une solution."},
+{id:13,titre:"Gestes écologiques à la maison",personnage:"votre colocataire",registre:"tu",situation:"Vous essayez d'adopter des gestes plus écologiques à la maison (trier les déchets, économiser l'eau, réduire la consommation d'énergie), mais votre colocataire ne fait pas les mêmes efforts. Vous lui en parlez pour le/la sensibiliser et proposer des changements concrets."},
+{id:14,titre:"Fausse information sur les réseaux",personnage:"un(e) ami(e)",registre:"tu",situation:"Votre ami(e) a partagé sur les réseaux sociaux une information que vous pensez être fausse et potentiellement dangereuse. Vous lui en parlez, expliquez pourquoi vous en doutez et l'encouragez à vérifier ses sources avant de partager."},
+{id:15,titre:"Demande de stage",personnage:"le/la responsable des ressources humaines",registre:"vous",situation:"Vous cherchez un stage de deux semaines dans une entreprise pour votre école. Vous appelez le/la responsable des ressources humaines pour vous présenter, expliquer votre motivation, décrire vos compétences et demander un entretien."}
+];
+
+// ── STATE ────────────────────────────────────────────
+var S={
+  partie:null,sujet:null,history:[],
+  monoTranscript:'',monoPhase:'speaking',questionCount:0,
+  prepInterval:null,prepSec:600,
+  speakInterval:null,speakSec:240,
+  recognition:null,isRecording:false,
+  lastExamText:'',evaluation:null,weakest:null,loading:false,
+  teacherMode:false,
+  mode:'single',fullStep:0,fullScores:[]
+};
+
+// ── MODE SELECTION ───────────────────────────────────
+function selectMode(mode,el){
+  S.mode=mode;
+  document.querySelectorAll('.partie-btn').forEach(function(b){b.classList.remove('selected');});
+  el.classList.add('selected');
+  var singleCard=document.getElementById('single-mode-card');
+  if(mode==='full'){
+    singleCard.classList.add('hidden');
+    document.getElementById('btn-launch').disabled=false;
+  } else {
+    singleCard.classList.remove('hidden');
+    document.getElementById('btn-launch').disabled=true;
+    S.partie=null;
+    document.getElementById('subject-wrap').classList.add('hidden');
+    document.getElementById('subject-select').value='';
+    document.querySelectorAll('#pb-entretien,#pb-interaction,#pb-monologue').forEach(function(b){b.classList.remove('selected');});
+  }
+}
+
+// ── SCREENS ──────────────────────────────────────────
+function showScreen(id){
+  stopTTS();
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById(id).classList.add('active');
+  document.getElementById('btn-header-home').classList.toggle('hidden-btn', id==='s-setup');
+}
+
+function goSetup(){
+  stopRec();stopTimers();stopTTS();
+  S.partie=null;S.sujet=null;S.history=[];S.monoTranscript='';S.monoPhase='speaking';
+  S.questionCount=0;S.prepSec=600;S.speakSec=240;S.lastExamText='';
+  S.evaluation=null;S.weakest=null;S.loading=false;S.isRecording=false;
+  S.mode='single';S.fullStep=0;S.fullScores=[];
+  document.getElementById('chat-area').innerHTML='';
+  document.getElementById('btn-launch').disabled=true;
+  document.querySelectorAll('.partie-btn').forEach(function(b){b.classList.remove('selected');});
+  document.getElementById('subject-wrap').classList.add('hidden');
+  document.getElementById('subject-select').value='';
+  document.getElementById('single-mode-card').classList.add('hidden');
+  document.getElementById('btn-next-partie').classList.add('hidden');
+  showScreen('s-setup');
+}
+
+// ── SETUP ────────────────────────────────────────────
+function selectPartie(partie,el){
+  S.partie=partie;S.sujet=null;
+  document.querySelectorAll('.partie-btn').forEach(function(b){b.classList.remove('selected');});
+  el.classList.add('selected');
+  var wrap=document.getElementById('subject-wrap');
+  var sel=document.getElementById('subject-select');
+  sel.innerHTML='<option value="">— Selectionnez un sujet —</option>';
+  if(partie==='entretien'){
+    wrap.classList.add('hidden');
+    document.getElementById('btn-launch').disabled=false;
+  } else {
+    wrap.classList.remove('hidden');
+    var data=partie==='monologue'?MONOLOGUES:INTERACTIONS;
+    data.forEach(function(s){
+      var o=document.createElement('option');
+      o.value=s.id;o.textContent=s.id+'. '+s.titre;
+      sel.appendChild(o);
+    });
+    document.getElementById('btn-launch').disabled=true;
+  }
+}
+
+function selectSubject(){
+  var val=document.getElementById('subject-select').value;
+  if(!val){S.sujet=null;document.getElementById('btn-launch').disabled=true;return;}
+  var data=S.partie==='monologue'?MONOLOGUES:INTERACTIONS;
+  S.sujet=data.find(function(s){return s.id==val;});
+  document.getElementById('btn-launch').disabled=false;
+}
+
+function launchExam(){
+  S.teacherMode=document.getElementById('teacher-mode-toggle').checked;
+  if(S.mode==='full'){
+    S.fullStep=0;S.fullScores=[];
+    startFullExamStep();
+    return;
+  }
+  if(S.partie==='monologue'){
+    var doc=document.getElementById('prep-doc');
+    doc.innerHTML='<div class="doc-title">'+S.sujet.titre+'</div>'+S.sujet.texte+'<div class="doc-source">'+S.sujet.source+'</div>';
+    showScreen('s-prep');
+    startPrepTimer();
+  } else {
+    setupExamScreen();
+    showScreen('s-exam');
+    beginPartie();
+  }
+}
+
+function startFullExamStep(){
+  var steps=['entretien','interaction','monologue'];
+  S.partie=steps[S.fullStep];
+  S.history=[];S.monoTranscript='';S.monoPhase='speaking';S.questionCount=0;
+  S.lastExamText='';S.loading=false;S.isRecording=false;
+  if(S.partie==='entretien'){
+    S.sujet=null;
+    setupExamScreen();showScreen('s-exam');beginPartie();
+  } else if(S.partie==='interaction'){
+    S.sujet=INTERACTIONS[Math.floor(Math.random()*INTERACTIONS.length)];
+    setupExamScreen();showScreen('s-exam');beginPartie();
+  } else {
+    S.sujet=MONOLOGUES[Math.floor(Math.random()*MONOLOGUES.length)];
+    var doc=document.getElementById('prep-doc');
+    doc.innerHTML='<div class="doc-title">'+S.sujet.titre+'</div>'+S.sujet.texte+'<div class="doc-source">'+S.sujet.source+'</div>';
+    showScreen('s-prep');startPrepTimer();
+  }
+}
+
+// ── PREP ─────────────────────────────────────────────
+function startPrepTimer(){
+  S.prepSec=600;updatePrep();
+  S.prepInterval=setInterval(function(){
+    S.prepSec--;updatePrep();
+    if(S.prepSec<=0){clearInterval(S.prepInterval);var el=document.getElementById('prep-timer');el.textContent='Temps ecoule';el.classList.add('urgent');}
+  },1000);
+}
+function updatePrep(){
+  var m=Math.floor(S.prepSec/60),s=S.prepSec%60;
+  var el=document.getElementById('prep-timer');
+  el.textContent=m+':'+(s<10?'0':'')+s;
+  if(S.prepSec<=60)el.classList.add('urgent');
+}
+function startExam(){
+  clearInterval(S.prepInterval);
+  setupExamScreen();
+  showScreen('s-exam');
+  beginPartie();
+}
+
+// ── EXAM SCREEN ──────────────────────────────────────
+function setupExamScreen(){
+  var labels={entretien:'Partie 1 — Entretien',interaction:'Partie 2 — Interaction',monologue:'Partie 3 — Point de vue'};
+  document.getElementById('exam-badge').textContent=labels[S.partie];
+  document.getElementById('exam-subject-label').textContent=S.sujet?'· '+S.sujet.titre:'';
+  var sit=document.getElementById('exam-situation');
+  if(S.partie==='interaction'&&S.sujet){
+    var reg=S.sujet.registre==='tu'?'TU — relation proche/informelle':'VOUS — relation formelle';
+    sit.innerHTML='<strong>Situation :</strong> '+S.sujet.situation+'<br><br><strong>Registre attendu : '+reg+'</strong>';
+    sit.classList.remove('hidden');
+  } else {sit.classList.add('hidden');}
+  if(S.partie==='monologue'){
+    document.getElementById('mono-info').classList.remove('hidden');
+    document.getElementById('speak-timer-block').classList.remove('hidden');
+  } else {
+    document.getElementById('mono-info').classList.add('hidden');
+    document.getElementById('speak-timer-block').classList.add('hidden');
+  }
+  document.getElementById('btn-done-mono').classList.add('hidden');
+  document.getElementById('chat-area').innerHTML='';
+  setMic(false);
+}
+
+// ── PROMPTS ──────────────────────────────────────────
+var REGLES_FORMAT="REGLES ABSOLUES DE FORMAT :\n- N'ecris JAMAIS d'actions entre asterisques (*sourit*, *hoche la tete*, etc.). Parle uniquement.\n- Maximum 2 phrases par intervention. L'eleve doit pouvoir suivre.\n- Texte oral naturel uniquement. Pas de listes, pas de tirets.\n- Reponds UNIQUEMENT en francais, meme si l'eleve ecrit dans une autre langue.";
+
+function getPrompt(){
+  if(S.partie==='entretien'){
+    return "Tu es un examinateur du DELF B1 Junior. Tu fais passer la Partie 1 : l'entretien dirige.\n\n"+REGLES_FORMAT+"\n\nTON ROLE D'EXAMINATEUR :\n- Tu es neutre, bienveillant, professionnel. Tu ne corriges jamais, tu ne fais jamais de commentaire sur les reponses.\n- Tu vouvoies l'eleve tout au long. Les eleves sont espagnols : leurs prenoms (Pablo, Maria, Carlos, Sofia, Lucia...) sont normaux, ne les commente pas.\n- Si une reponse est trop courte : relance avec Pouvez-vous developper ? / Pourquoi ? / Depuis quand ?\n- Si l'eleve ne comprend pas : reformule la meme question plus simplement, une seule fois.\n\nDEROULEMENT STRICT :\n1. Salutation + presentation : Bonjour ! Je suis votre examinateur pour l'oral DELF B1 Junior. Pour commencer, pouvez-vous vous presenter, s'il vous plait ?\n2. Apres la presentation : pose 4 questions, UNE PAR UNE, dans cet ordre :\n   - L'ecole (matieres preferees, professeurs, ambiance)\n   - Les loisirs et passions\n   - Une experience passee memorable (utilise le passe compose dans ta question)\n   - Les projets d'avenir (metier, voyages, etudes)\n3. Conclusion EXACTE apres la 4e reponse : Merci beaucoup. Nous allons maintenant passer a la partie suivante de l'epreuve.\nJAMAIS de feedback, jamais de correction, jamais d'appreciation sur les reponses.";
+  }
+  if(S.partie==='monologue'){
+    return "Tu es un examinateur du DELF B1 Junior. Tu fais passer la Partie 3 : l'expression d'un point de vue.\n\n"+REGLES_FORMAT+"\n\nTON ROLE D'EXAMINATEUR :\n- Tu es neutre, silencieux pendant l'expose. Tu ne reagis pas, tu n'encourages pas, tu n'interromps jamais.\n- Tu vouvoies l'eleve. Si une reponse est trop courte aux questions : Pouvez-vous preciser ? / Qu'est-ce que vous voulez dire par la ?\n\nDEROULEMENT STRICT :\n1. Consigne de depart (une seule fois) : Vous avez eu dix minutes pour preparer votre expose sur le document. Vous devez presenter le theme principal, developper vos idees avec des connecteurs logiques et des exemples, puis donner votre point de vue personnel. Vous avez environ quatre minutes. Je vous ecoute.\n2. TU N'INTERROMPS PAS l'eleve. Tu attends qu'il/elle dise qu'il/elle a termine ou que le temps soit ecoule.\n3. Apres l'expose : pose 2 questions courtes et precisees UNIQUEMENT sur ce que l'eleve vient de dire. Une question a la fois.\n4. Conclusion apres la derniere reponse : Merci beaucoup pour votre expose.\nJAMAIS de feedback pendant l'exercice.";
+  }
+  if(S.partie==='interaction'){
+    var reg=S.sujet.registre;
+    var regLabel=reg==='tu'?'TU (relation amicale/informelle)':'VOUS (relation formelle/professionnelle)';
+    return "Tu joues le role de : "+S.sujet.personnage+"\nSituation : "+S.sujet.situation+"\n\n"+REGLES_FORMAT+"\n\nREGISTRE OBLIGATOIRE : "+regLabel+" — sans aucune exception, meme si l'eleve utilise l'autre registre.\n\nCOMPORTEMENT DELF B1 :\n- Tu incarnes ce personnage a 100%. Tu ne sors JAMAIS du role.\n- Tu n'es PAS l'eleve. Tu n'ecris JAMAIS ses repliques. Tu attends toujours qu'il parle.\n- DEBUT : salutation courte et naturelle uniquement (Bonjour, je peux vous aider ? / Salut ! / Bonjour, que puis-je faire pour vous ?). Tu attends que l'eleve explique son besoin. TU NE DEVANCES PAS.\n- Tu es realiste et legerement difficile : tu poses des questions de precision, tu crees des petits obstacles credibles (horaires, stock, reglement, delai), tu n'acceptes pas tout immediatement.\n- Tu restes colle au theme. Pas d'inventions hors sujet.\n- Apres environ 10 echanges, conclus la scene de facon naturelle selon la situation.\n- JAMAIS de feedback, correction ou commentaire en dehors du personnage.";
+  }
+}
+
+function getMonoQuestionsPrompt(){
+  return "Tu es un examinateur DELF B1 Junior. L'eleve vient de terminer son expose sur le theme : \""+S.sujet.titre+"\".\nTranscription de l'expose de l'eleve : "+S.monoTranscript+"\n\n"+REGLES_FORMAT+"\n\nTu poses maintenant 2 questions, UNE PAR UNE, UNIQUEMENT sur ce que l'eleve vient de dire dans sa transcription. Pas de questions generales sur le theme, uniquement sur son contenu. Tu vouvoies l'eleve.\nSi la reponse est trop courte : Pouvez-vous preciser ? / Qu'est-ce que vous voulez dire par la ?\nApres la 2e reponse, conclus exactement avec : Merci beaucoup pour votre expose.\nJAMAIS de feedback ni de correction.";
+}
+
+// ── EXAM FLOW ─────────────────────────────────────────
+function beginPartie(){
+  S.loading=true;
+  var typing=addTyping();
+  claudeCall([],getPrompt(),200,function(text){
+    typing.remove();
+    var cleanedText=cleanText(text);
+    addMsg('examiner',cleanedText);
+    S.history.push({role:'assistant',content:cleanedText});
+    S.lastExamText=cleanedText;speak(cleanedText);S.loading=false;
+    if(S.partie==='monologue'){
+      document.getElementById('btn-done-mono').classList.remove('hidden');
+      startSpeakTimer();setMic(true);
+      setHint('Presentez votre expose. Appuyez sur le micro pour chaque segment.');
+    } else {
+      setMic(true);
+      setHint('A votre tour. Appuyez sur le micro pour parler.');
+    }
+  });
+}
+
+function examinerTurn(){
+  if(S.loading)return;
+  S.loading=true;setMic(false);
+  var typing=addTyping();
+  var prompt=(S.partie==='monologue'&&S.monoPhase==='questions')?getMonoQuestionsPrompt():getPrompt();
+  claudeCall(S.history,prompt,300,function(text){
+    typing.remove();
+    var cleanedText=cleanText(text);
+    addMsg('examiner',cleanedText);
+    S.history.push({role:'assistant',content:cleanedText});
+    S.lastExamText=cleanedText;speak(cleanedText);S.questionCount++;
+    var done=(text.indexOf('Merci')>=0&&(text.indexOf('passer')>=0||text.indexOf('interaction')>=0||text.indexOf('presentation')>=0||text.indexOf('epreuve')>=0))||
+      (S.partie==='entretien'&&S.questionCount>=8)||
+      (S.partie==='monologue'&&S.monoPhase==='questions'&&S.questionCount>=4)||
+      (S.partie==='interaction'&&S.questionCount>=14);
+    S.loading=false;
+    if(done){setHint('Exercice termine - evaluation en cours...');setTimeout(generateEval,1600);}
+    else{setMic(true);setHint('A votre tour. Appuyez sur le micro pour parler.');}
+  });
+}
+
+// ── MONO TIMER ───────────────────────────────────────
+function startSpeakTimer(){
+  S.speakSec=240;updateSpeak();
+  S.speakInterval=setInterval(function(){
+    S.speakSec--;updateSpeak();
+    if(S.speakSec<=0){clearInterval(S.speakInterval);finishMonologue();}
+  },1000);
+}
+function updateSpeak(){
+  var m=Math.floor(S.speakSec/60),s=S.speakSec%60;
+  var el=document.getElementById('speak-timer');
+  el.textContent=m+':'+(s<10?'0':'')+s;
+  if(S.speakSec<=30)el.classList.add('urgent');
+}
+function finishMonologue(){
+  clearInterval(S.speakInterval);stopRec();setMic(false);
+  document.getElementById('btn-done-mono').classList.add('hidden');
+  document.getElementById('speak-timer-block').classList.add('hidden');
+  document.getElementById('mono-info').classList.add('hidden');
+  var transcript=S.monoTranscript.trim()||'[Expose sans transcription]';
+  addMsg('student','[ Fin de l\'expose ]');
+  S.history.push({role:'user',content:"L'eleve a termine son expose. Transcription : "+transcript});
+  S.monoPhase='questions';S.questionCount=0;
+  examinerTurn();
+}
+
+// ── VOICE ─────────────────────────────────────────────
+function toggleMic(){if(S.isRecording)stopRec();else startRec();}
+function startRec(){
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){alert('Reconnaissance vocale non supportee. Utilisez Chrome ou Edge.');return;}
+  S.recognition=new SR();S.recognition.lang='fr-FR';S.recognition.continuous=false;S.recognition.interimResults=true;
+  S.recognition.onstart=function(){
+    S.isRecording=true;
+    document.getElementById('btn-mic').classList.add('rec');
+    document.getElementById('btn-mic').textContent='⏹';
+    setVStatus('Enregistrement... Parlez maintenant.','vact');
+  };
+  S.recognition.onresult=function(e){
+    var fin='',interim='';
+    for(var i=e.resultIndex;i<e.results.length;i++){
+      if(e.results[i].isFinal)fin+=e.results[i][0].transcript;
+      else interim+=e.results[i][0].transcript;
+    }
+    setVStatus(fin||interim,'vok');
+    if(fin)handleSpeech(fin.trim());
+  };
+  S.recognition.onerror=function(e){
+    stopRec();
+    setVStatus(e.error!=='no-speech'?'Erreur: '+e.error+'. Reessayez.':'Appuyez pour parler.','');
+  };
+  S.recognition.onend=function(){
+    S.isRecording=false;
+    document.getElementById('btn-mic').classList.remove('rec');
+    document.getElementById('btn-mic').textContent='🎙️';
+    if(!S.loading)setVStatus('Appuyez pour parler.','');
+  };
+  S.recognition.start();
+}
+function stopRec(){
+  if(S.recognition){try{S.recognition.stop();}catch(e){}S.recognition=null;}
+  S.isRecording=false;
+  var btn=document.getElementById('btn-mic');
+  btn.classList.remove('rec');btn.textContent='🎙️';
+}
+function handleSpeech(text){
+  if(!text)return;
+  if(S.partie==='monologue'&&S.monoPhase==='speaking'){
+    S.monoTranscript+=(S.monoTranscript?' ':'')+text;
+    var el=document.getElementById('mono-live');el.textContent=S.monoTranscript;el.classList.add('filled');
+    setVStatus('Segment enregistre. Continuez ou cliquez J\'ai termine.','vok');
+  } else {
+    addMsg('student',text);S.history.push({role:'user',content:text});examinerTurn();
+  }
+}
+function setMic(on){
+  document.getElementById('btn-mic').disabled=!on;
+  if(!on&&!S.isRecording)setVStatus('Attendez que l\'examinateur parle...','');
+}
+function setVStatus(t,cls){var el=document.getElementById('voice-status');el.textContent=t;el.className='voice-status'+(cls?' '+cls:'');}
+function setHint(t){document.getElementById('shint').textContent=t;}
+
+// ── TEXT CLEAN ────────────────────────────────────────
+function cleanText(text){
+  return text.replace(/\*[^*]+\*/g,'').replace(/\s{2,}/g,' ').trim();
+}
+
+// ── TTS ──────────────────────────────────────────────
+function speak(text){
+  if(!window.speechSynthesis)return;stopTTS();
+  var clean=cleanText(text);
+  var u=new SpeechSynthesisUtterance(clean);
+  u.lang='fr-FR';u.rate=0.88;u.pitch=1.08;u.volume=1;
+  var voices=speechSynthesis.getVoices();
+  var preferred=['Google français','Google French','Microsoft Paul','Amélie','Thomas'];
+  var best=null;
+  preferred.forEach(function(name){
+    if(!best) best=voices.find(function(v){return v.name&&v.name.indexOf(name)>=0;});
+  });
+  if(!best) best=voices.find(function(v){return v.lang&&v.lang.startsWith('fr')&&!v.localService;});
+  if(!best) best=voices.find(function(v){return v.lang&&v.lang.startsWith('fr');});
+  if(best)u.voice=best;
+  speechSynthesis.speak(u);
+}
+function stopTTS(){if(window.speechSynthesis)speechSynthesis.cancel();}
+function repeatLast(){if(S.lastExamText)speak(S.lastExamText);}
+
+// ── CHAT UI ───────────────────────────────────────────
+function addMsg(role,text){
+  var area=document.getElementById('chat-area');
+  var msg=document.createElement('div');msg.className='msg '+role;
+  var av=document.createElement('div');av.className='avatar '+(role==='examiner'?'ex':'st');
+  av.textContent=role==='examiner'?'👨‍🏫':'🎓';
+  var bub=document.createElement('div');bub.className='bubble';
+
+  if(role==='examiner'){
+    // Texte masqué par défaut — l'élève doit écouter
+    var hidden=document.createElement('div');
+    hidden.style.cssText='color:var(--t3);font-style:italic;font-size:.8rem;display:flex;align-items:center;gap:8px;';
+    hidden.innerHTML='<span style="font-size:1.1rem;">🎧</span> Examinateur en train de parler… <button style="background:transparent;border:1px solid var(--vi3);color:var(--vi);padding:2px 9px;border-radius:6px;font-size:.69rem;font-family:Poppins,sans-serif;font-weight:600;cursor:pointer;margin-left:4px;letter-spacing:.03em;">Voir</button>';
+    var realText=document.createElement('div');
+    realText.style.display='none';realText.textContent=text;
+    hidden.querySelector('button').addEventListener('click',function(){
+      hidden.style.display='none';realText.style.display='block';
+    });
+    bub.appendChild(hidden);bub.appendChild(realText);
+    msg.appendChild(av);msg.appendChild(bub);
+  } else {
+    bub.textContent=text;
+    msg.appendChild(bub);msg.appendChild(av);
+  }
+  area.appendChild(msg);area.scrollTop=area.scrollHeight;
+}
+function addTyping(){
+  var area=document.getElementById('chat-area');
+  var msg=document.createElement('div');msg.className='msg examiner';
+  var av=document.createElement('div');av.className='avatar ex';av.textContent='👨‍🏫';
+  var bub=document.createElement('div');bub.className='bubble typing';bub.innerHTML='<span></span><span></span><span></span>';
+  msg.appendChild(av);msg.appendChild(bub);
+  area.appendChild(msg);area.scrollTop=area.scrollHeight;
+  return msg;
+}
+
+// ── EVALUATION ────────────────────────────────────────
+function generateEval(){
+  showScreen('s-eval');
+  document.getElementById('scores-grid').innerHTML='<div style="color:var(--t3);font-size:.84rem;grid-column:1/-1;">Analyse en cours...</div>';
+  document.getElementById('feedback-text').textContent='';
+  document.getElementById('teacher-report-block').classList.add('hidden');
+  var conv=S.history.map(function(m){return (m.role==='assistant'?'Examinateur':'Eleve')+': '+m.content;}).join('\n\n');
+  var extra='';
+  if(S.partie==='monologue'){
+    extra='\nVERIFICATIONS MONOLOGUE :\n- A-t-il presente le theme du document ?\n- A-t-il developpe 5 idees avec connecteurs (d\'abord, ensuite, de plus, cependant, enfin...) ?\n- A-t-il donne des exemples concrets ?\n- A-t-il donne son point de vue personnel en conclusion ?\n- A-t-il utilise "tu" pour s\'adresser a l\'examinateur ? Si oui : FAUTE GRAVE, penaliser dans Coherence.';
+  } else if(S.partie==='interaction'&&S.sujet){
+    extra='\nVERIFICATIONS INTERACTION :\n- Registre attendu : '+S.sujet.registre.toUpperCase()+'. A-t-il respecte ce registre ?\n- A-t-il produit environ 10 phrases completes ?\n- A-t-il su gerer les obstacles et negocier ?';
+  }
+  var teacherExtra=S.teacherMode?'\n\nMODE ENSEIGNANT : dans le champ "rapport_enseignant", produis un rapport pedagogique detaille avec : points forts, erreurs recurrentes avec exemples precis de la conversation, corrections proposees, niveau estime (A2+/B1-/B1/B1+), besoins de remediation prioritaires, et 2-3 exercices recommandes pour la prochaine seance. En francais, ton professionnel pour enseignant.':'';
+  var partieLabel={'entretien':'Partie 1 - Entretien dirige','interaction':'Partie 2 - Exercice en interaction','monologue':'Partie 3 - Point de vue sur document'}[S.partie]||S.partie;
+  var sys='Tu es un examinateur-correcteur DELF B1 Junior. Tu evalues uniquement : '+partieLabel+'. Tu notes strictement ce qui a ete produit.'+extra+teacherExtra+'\n\nCRITERES DELF B1 a appliquer :\n- Coherence (6pts) : organisation des idees, connecteurs logiques, enchainement\n- Lexique (6pts) : variete et precision du vocabulaire\n- Grammaire (5pts) : correction des structures, des temps, des accords\n- Argumentation/interaction (5pts) : capacite a reagir, developper, convaincre\n\nRetourne UNIQUEMENT un JSON valide sans markdown :\n{"scores":{"coherence":{"note":X,"max":6,"label":"Coherence et enchainement"},"lexique":{"note":X,"max":6,"label":"Richesse lexicale"},"grammaire":{"note":X,"max":5,"label":"Correction grammaticale"},"argumentation":{"note":X,"max":5,"label":"Argumentation et interaction"}},"total":X,"total_max":22,"mention":"Insuffisant|Passable|Assez bien|Bien|Tres bien","weakest":"coherence|lexique|grammaire|argumentation","feedback":"Retour personnalise comme un examinateur DELF B1. Structure obligatoire avec sauts de ligne :\n\nBILAN : [1 phrase generale]\n\nCE QUI FONCTIONNE BIEN :\n- [phrase exacte de l\'eleve] : pourquoi c\'est bien\n- [autre phrase exacte] : pourquoi c\'est bien\n\nERREURS A CORRIGER :\n- [erreur exacte] -> CORRECTION : [forme correcte + explication]\n- [autre erreur exacte] -> CORRECTION : [forme correcte + explication]\n- [3e erreur si possible] -> CORRECTION : [forme correcte]\n\nCONSEIL : [1 conseil pratique pour progresser]. Ton bienveillant. 180-220 mots.","rapport_enseignant":"'+(S.teacherMode?'Rapport pedagogique detaille tel que decrit ci-dessus.':'')+'"}';
+  claudeCall([{role:'user',content:'Conversation :\n'+conv}],sys,1400,function(raw){
+    var fb;
+    try{fb=JSON.parse(raw.replace(/```json|```/g,'').trim());}
+    catch(e){fb={scores:{coherence:{note:3,max:6,label:'Coherence'},lexique:{note:3,max:6,label:'Richesse lexicale'},grammaire:{note:3,max:5,label:'Grammaire'},argumentation:{note:3,max:5,label:'Argumentation'}},total:12,total_max:22,mention:'Passable',weakest:'lexique',feedback:raw,rapport_enseignant:''};}
+    S.evaluation=fb;S.weakest=fb.weakest;
+    renderEval(fb);
+  });
+}
+
+function renderEval(fb){
+  var grid=document.getElementById('scores-grid');grid.innerHTML='';
+  Object.values(fb.scores).forEach(function(s){
+    var pct=Math.round(s.note/s.max*100);
+    var d=document.createElement('div');d.className='score-item';
+    d.innerHTML='<div class="slabel">'+s.label+'</div><div class="snums"><span class="sval">'+s.note+'</span><span class="smax">/ '+s.max+' pts</span></div><div class="sbar-bg"><div class="sbar-fill" data-pct="'+pct+'"></div></div>';
+    grid.appendChild(d);
+  });
+  var mc={'Tres bien':'m-tb','Bien':'m-b','Assez bien':'m-ab','Passable':'m-p','Insuffisant':'m-i'};
+  var tot=document.createElement('div');tot.className='score-item score-total';
+  tot.innerHTML='<div class="slabel">Score total &mdash; Seuil de reussite : 11/22</div><div class="snums" style="justify-content:center;"><span class="sval">'+fb.total+'</span><span class="smax">/ '+fb.total_max+'</span></div><span class="mention '+(mc[fb.mention]||'m-p')+'">'+fb.mention+'</span>';
+  grid.appendChild(tot);
+  document.getElementById('feedback-text').textContent=fb.feedback;
+  if(S.teacherMode&&fb.rapport_enseignant){
+    document.getElementById('teacher-report-content').textContent=fb.rapport_enseignant;
+    document.getElementById('teacher-report-block').classList.remove('hidden');
+  }
+  setTimeout(function(){document.querySelectorAll('.sbar-fill').forEach(function(b){b.style.width=b.dataset.pct+'%';});},150);
+
+  // Full exam chaining
+  var nextBtn=document.getElementById('btn-next-partie');
+  var exoBtn=document.getElementById('btn-go-exo');
+  var newBtn=document.getElementById('btn-new-from-eval');
+  if(S.mode==='full'){
+    S.fullScores.push({partie:S.partie,sujet:S.sujet?S.sujet.titre:'',fb:fb});
+    nextBtn.classList.remove('hidden');
+    if(S.fullStep===2){
+      nextBtn.textContent='Voir le bilan final ★';
+    } else {
+      var labels=['','Partie 2 — Interaction ▶','Partie 3 — Point de vue ▶'];
+      nextBtn.textContent=labels[S.fullStep+1]||'Suite ▶';
+    }
+    exoBtn.classList.add('hidden');
+    newBtn.classList.add('hidden');
+  } else {
+    nextBtn.classList.add('hidden');
+    exoBtn.classList.remove('hidden');
+    newBtn.classList.remove('hidden');
+  }
+}
+
+// ── EXERCICES ─────────────────────────────────────────
+function showExercises(){
+  showScreen('s-exo');
+  document.getElementById('exo-content').innerHTML='';
+  var labels={coherence:'Coherence et connecteurs',lexique:'Richesse lexicale',grammaire:'Correction grammaticale',argumentation:'Argumentation et interaction'};
+  var critere=S.weakest||'lexique';
+  var sujetTitre=S.sujet?S.sujet.titre:'expression orale';
+  document.getElementById('exo-title').textContent='Exercices de remediation : '+labels[critere];
+  document.getElementById('exo-loading').style.display='block';
+  var sys='Tu es un professeur de FLE expert en DELF B1 junior pour adolescents. L\'eleve a travaille sur le theme "'+sujetTitre+'". Son point le plus faible est : '+labels[critere]+'.\nGenere 2 exercices pratiques ciblés, directement lies au theme "'+sujetTitre+'". Niveau B1, adaptes a des adolescents.\nRetourne UNIQUEMENT un JSON valide sans markdown :\n{"exercices":[{"titre":"...","consigne":"...","contenu":"...","corrige":"..."},{"titre":"...","consigne":"...","contenu":"...","corrige":"..."}]}';
+  claudeCall([{role:'user',content:'Genere les exercices.'}],sys,1400,function(raw){
+    document.getElementById('exo-loading').style.display='none';
+    var data;
+    try{data=JSON.parse(raw.replace(/```json|```/g,'').trim());}
+    catch(e){document.getElementById('exo-content').innerHTML='<div class="exo-content">'+raw+'</div>';return;}
+    var cont=document.getElementById('exo-content');
+    data.exercices.forEach(function(ex,i){
+      var d=document.createElement('div');d.className='exo-block';
+      d.innerHTML='<div class="exo-title">Exercice '+(i+1)+' — '+ex.titre+'</div><div class="exo-content"><strong>Consigne :</strong> '+ex.consigne+'\n\n'+ex.contenu+'</div>';
+      var btn=document.createElement('button');btn.className='btn btn-se btn-sm';btn.style.marginTop='10px';btn.textContent='Voir le corrige';
+      var corr=document.createElement('div');corr.className='corr-content';corr.textContent=ex.corrige;
+      btn.addEventListener('click',function(){
+        corr.classList.toggle('open');
+        btn.textContent=corr.classList.contains('open')?'Masquer le corrige':'Voir le corrige';
+      });
+      d.appendChild(btn);d.appendChild(corr);cont.appendChild(d);
+    });
+  });
+}
+
+// ── BILAN FINAL ───────────────────────────────────────
+function showBilanFinal(){
+  showScreen('s-bilan');
+  var labels={entretien:'Partie 1 — Entretien dirigé',interaction:'Partie 2 — Interaction',monologue:'Partie 3 — Point de vue'};
+  var mentions={entretien:'',interaction:'',monologue:''};
+  var html='';
+  var totalPts=0,totalMax=0;
+  S.fullScores.forEach(function(ps){
+    var fb=ps.fb;
+    totalPts+=fb.total;totalMax+=fb.total_max;
+    var mc={'Tres bien':'m-tb','Bien':'m-b','Assez bien':'m-ab','Passable':'m-p','Insuffisant':'m-i'};
+    var pct=Math.round(fb.total/fb.total_max*100);
+    html+='<div class="score-item" style="margin-bottom:12px;">';
+    html+='<div class="slabel" style="font-size:.8rem;font-weight:600;color:var(--vi);margin-bottom:6px;">'+labels[ps.partie]+(ps.sujet?' — '+ps.sujet:'')+'</div>';
+    html+='<div class="snums"><span class="sval">'+fb.total+'</span><span class="smax">/ '+fb.total_max+'</span>';
+    html+='<span class="mention '+(mc[fb.mention]||'m-p')+'" style="margin-left:10px;">'+fb.mention+'</span></div>';
+    html+='<div class="sbar-bg" style="margin-top:6px;"><div class="sbar-fill" data-pct="'+pct+'" style="width:0"></div></div>';
+    html+='</div>';
+  });
+  var globalPct=Math.round(totalPts/totalMax*100);
+  var globalMention=globalPct>=80?'Très bien':globalPct>=68?'Bien':globalPct>=55?'Assez bien':globalPct>=45?'Passable':'Insuffisant';
+  var mc2={'Très bien':'m-tb','Bien':'m-b','Assez bien':'m-ab','Passable':'m-p','Insuffisant':'m-i'};
+  html+='<div class="score-item score-total" style="margin-top:8px;">';
+  html+='<div class="slabel">Score total examen</div>';
+  html+='<div class="snums" style="justify-content:center;"><span class="sval">'+totalPts+'</span><span class="smax">/ '+totalMax+'</span></div>';
+  html+='<span class="mention '+(mc2[globalMention]||'m-p')+'">'+globalMention+'</span>';
+  html+='<div class="sbar-bg" style="margin-top:8px;"><div class="sbar-fill" data-pct="'+globalPct+'" style="width:0"></div></div>';
+  html+='</div>';
+  document.getElementById('bilan-content').innerHTML=html;
+  setTimeout(function(){document.querySelectorAll('#s-bilan .sbar-fill').forEach(function(b){b.style.width=b.dataset.pct+'%';});},150);
+}
+
+// ── UTILS ─────────────────────────────────────────────
+function stopTimers(){clearInterval(S.prepInterval);clearInterval(S.speakInterval);}
+
+// ── API ───────────────────────────────────────────────
+function claudeCall(messages,system,maxTokens,callback){
+  var msgs=messages.length>0?messages:[{role:'user',content:'Commence.'}];
+  fetch('/api/claude',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:maxTokens,system:system,messages:msgs})
+  })
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if(d.error){callback('Erreur : '+d.error.message);return;}
+    callback(d.content&&d.content[0]?d.content[0].text:'Erreur. Reessayez.');
+  })
+  .catch(function(e){callback('Erreur de connexion : '+e.message);});
+}
+
+// ── INIT ──────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('mode-btn-full').addEventListener('click',function(){selectMode('full',this);});
+  document.getElementById('mode-btn-single').addEventListener('click',function(){selectMode('single',this);});
+  document.getElementById('pb-entretien').addEventListener('click',function(){selectPartie('entretien',this);});
+  document.getElementById('pb-monologue').addEventListener('click',function(){selectPartie('monologue',this);});
+  document.getElementById('pb-interaction').addEventListener('click',function(){selectPartie('interaction',this);});
+  document.getElementById('subject-select').addEventListener('change',selectSubject);
+  document.getElementById('btn-launch').addEventListener('click',launchExam);
+  document.getElementById('btn-prep-back').addEventListener('click',goSetup);
+  document.getElementById('btn-start-exam').addEventListener('click',startExam);
+  document.getElementById('btn-repeat').addEventListener('click',repeatLast);
+  document.getElementById('btn-mic').addEventListener('click',toggleMic);
+  document.getElementById('btn-done-mono').addEventListener('click',finishMonologue);
+document.getElementById('btn-stop-exam').addEventListener('click',function(){
+  stopRec();stopTimers();stopTTS();
+  if(S.history.length===0){alert('Commencez l\'exercice avant de demander un feedback.');return;}
+  generateEval();
+});
+  document.getElementById('btn-new-from-eval').addEventListener('click',goSetup);
+  document.getElementById('btn-go-exo').addEventListener('click',showExercises);
+  document.getElementById('btn-next-partie').addEventListener('click',function(){
+    stopTTS();
+    if(S.fullStep===2){
+      showBilanFinal();
+    } else {
+      S.fullStep++;
+      startFullExamStep();
+    }
+  });
+  document.getElementById('btn-bilan-new').addEventListener('click',goSetup);
+  document.getElementById('btn-exo-back').addEventListener('click',function(){showScreen('s-eval');});
+  document.getElementById('btn-new-from-exo').addEventListener('click',goSetup);
+  document.getElementById('btn-header-home').addEventListener('click',goSetup);
+
+  if(window.speechSynthesis){
+    speechSynthesis.onvoiceschanged=function(){speechSynthesis.getVoices();};
+    speechSynthesis.getVoices();
+  }
+});
+</script>
+</body>
+</html>
